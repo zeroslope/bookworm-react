@@ -90,4 +90,4 @@ yarn add standard --dev
 ## add `Semantic-ui-react`
 
 ## config LoginForm
-
+use `Validator` to validate email
