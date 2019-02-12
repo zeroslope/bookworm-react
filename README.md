@@ -66,3 +66,23 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+## config `standard`
+```shell
+yarn add standard --dev
+```
+在`package.json`中加入
+```JSON
+"standard": {
+  "parser": "babel-eslint",
+  "globals": [
+    "window"
+  ],
+  "ignore": [
+    "**/node_modules/**"
+  ]
+},
+```
+创建`.env`文件，加入`SKIP_PREFLIGHT_CHECK=true`；
+
+删除多余的文件，留下`App.js, index.js, serviceWorker.js`，编写`Hello World`，测试能否正常运行。
