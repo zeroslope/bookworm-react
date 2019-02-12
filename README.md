@@ -86,3 +86,8 @@ yarn add standard --dev
 创建`.env`文件，加入`SKIP_PREFLIGHT_CHECK=true`；
 
 删除多余的文件，留下`App.js, index.js, serviceWorker.js`，编写`Hello World`，测试能否正常运行。
+
+## add `Semantic-ui-react`
+
+## config LoginForm
+
