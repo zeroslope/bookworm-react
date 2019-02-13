@@ -91,3 +91,15 @@ yarn add standard --dev
 
 ## config LoginForm
 use `Validator` to validate email
+
+## Route
+
+### Route with Authentication
+
+### Update Blocking
+
+the problem is the combine of redux and router
+
+When you connect components to Redux and use them in your route, you will have blockers.
+
+One way to fix it: add `location` props;
