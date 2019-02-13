@@ -9,6 +9,7 @@ import thunk from 'redux-thunk'
 import rootReducer from './rootReducer'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
+import { userLoggedIn } from './actions/auth'
 
 const store = createStore(
   rootReducer,
@@ -16,6 +17,11 @@ const store = createStore(
     applyMiddleware(thunk)
   )
 )
+
+if (window.localStorage.bookwormJWT) {
+  const user = { token: window.localStorage.bookwormJWT }
+  store.dispatch(userLoggedIn(user))
+}
 
 ReactDOM.render(
   <BrowserRouter>
