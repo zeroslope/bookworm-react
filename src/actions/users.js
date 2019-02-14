@@ -5,6 +5,7 @@ export const signup = data => {
   return dispatch => {
     return api.user.signup(data)
       .then(user => {
+        window.localStorage.bookwormJWT = user.token
         dispatch(userLoggedIn(user))
       })
   }
