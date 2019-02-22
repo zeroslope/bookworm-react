@@ -9,6 +9,10 @@ export default {
     signup: (user) => {
       return axios.post('/api/users', { user })
         .then(res => res.data.user)
+    },
+    confirm: (token) => {
+      return axios.post('/api/auth/confirmation', { token })
+        .then(res => res.data.user)
     }
   }
 }

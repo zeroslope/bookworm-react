@@ -10,6 +10,7 @@ import rootReducer from './rootReducer'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import { userLoggedIn } from './actions/auth'
+import decode from 'jwt-decode'
 
 const store = createStore(
   rootReducer,
@@ -19,7 +20,12 @@ const store = createStore(
 )
 
 if (window.localStorage.bookwormJWT) {
-  const user = { token: window.localStorage.bookwormJWT }
+  const payload = decode(window.localStorage.bookwormJWT)
+  const user = {
+    token: window.localStorage.bookwormJWT,
+    email: payload.email,
+    confirmed: payload.confirmed
+  }
   store.dispatch(userLoggedIn(user))
 }
 

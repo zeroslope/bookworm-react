@@ -26,3 +26,13 @@ export const logout = () => {
     dispatch(userLoggedOut())
   }
 }
+
+export const confirm = (token) => {
+  return dispatch => {
+    return api.user.confirm(token)
+      .then(user => {
+        window.localStorage.bookwormJWT = user.token
+        dispatch(userLoggedIn(user))
+      })
+  }
+}
