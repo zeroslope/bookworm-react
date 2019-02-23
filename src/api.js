@@ -13,6 +13,16 @@ export default {
     confirm: (token) => {
       return axios.post('/api/auth/confirmation', { token })
         .then(res => res.data.user)
+    },
+    forgetPassword: (user) => {
+      return axios.post('/api/auth/forget_password', { user })
+    },
+    confirmReset: (token) => {
+      return axios.post('/api/auth/reset_password', { token })
+        .then(res => res.data.user)
+    },
+    resetPassword: (user) => {
+      return axios.post('/api/users/reset_password', { user })
     }
   }
 }
