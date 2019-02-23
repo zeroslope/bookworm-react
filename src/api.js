@@ -14,15 +14,14 @@ export default {
       return axios.post('/api/auth/confirmation', { token })
         .then(res => res.data.user)
     },
-    forgetPassword: (user) => {
-      return axios.post('/api/auth/forget_password', { user })
+    resetPasswordRequest: (email) => {
+      return axios.post('/api/auth/reset_password_request', { email })
     },
-    confirmReset: (token) => {
-      return axios.post('/api/auth/reset_password', { token })
-        .then(res => res.data.user)
+    validateToken: (token) => {
+      return axios.post('/api/auth/validate_token', { token })
     },
-    resetPassword: (user) => {
-      return axios.post('/api/users/reset_password', { user })
+    resetPassword: (data) => {
+      return axios.post('/api/auth/reset_password', { data })
     }
   }
 }

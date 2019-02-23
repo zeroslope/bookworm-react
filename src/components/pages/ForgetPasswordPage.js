@@ -1,15 +1,21 @@
 import React, { Component } from 'react'
-import api from '../../api'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import ForgetForm from '../forms/ForgetForm'
 import { Message, Icon } from 'semantic-ui-react'
+import { resetPasswordRequest } from '../../actions/auth'
 
-export class ForgetPWPage extends Component {
+export class ForgetPasswordPage extends Component {
+  static propTypes = {
+    resetPasswordRequest: PropTypes.func.isRequired
+  }
+
   state = {
     success: false
   }
 
   submit = (user) => {
-    return api.user.forgetPassword(user)
+    return this.props.resetPasswordRequest(user)
       .then(() => {
         this.setState({ success: true })
       })
@@ -37,4 +43,4 @@ export class ForgetPWPage extends Component {
   }
 }
 
-export default ForgetPWPage
+export default connect(null, { resetPasswordRequest })(ForgetPasswordPage)

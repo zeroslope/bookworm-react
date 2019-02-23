@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Validator from 'validator'
+import isEmail from 'validator/lib/isEmail'
 import { Form, Button, Message } from 'semantic-ui-react'
 import InlineError from '../messages/InlineError'
 
@@ -36,7 +36,7 @@ class ForgetForm extends Component {
 
   validate = (data) => {
     const errors = {}
-    if (!Validator.isEmail(data.email)) errors.email = 'Invalid email'
+    if (!isEmail(data.email)) errors.email = 'Invalid email'
     return errors
   }
 
@@ -52,7 +52,7 @@ class ForgetForm extends Component {
         }
         <Form.Field error={!!errors.email}>
           <label htmlFor='email'>Email</label>
-          <input type='email' name='email' id='email' value={email} onChange={this.onChange} />
+          <input type='email' name='email' id='email' placeholder='email' value={email} onChange={this.onChange} />
           {errors.email && <InlineError text={errors.email} />}
         </Form.Field>
         <Button type='submit' secondary>Send</Button>

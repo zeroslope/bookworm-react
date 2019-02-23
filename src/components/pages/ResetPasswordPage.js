@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import api from '../../api'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Message, Icon } from 'semantic-ui-react'
 import ResetForm from '../forms/ResetForm'
+import { validateToken, resetPassword } from '../../actions/auth'
 
 class ResetPasswordPage extends Component {
   static propTypes = {
@@ -11,31 +12,34 @@ class ResetPasswordPage extends Component {
       params: PropTypes.shape({
         token: PropTypes.string.isRequired
       }).isRequired
+    }).isRequired,
+    resetPassword: PropTypes.func.isRequired,
+    history: PropTypes.shape({
+      push: PropTypes.func.isRequired
     }).isRequired
   }
 
   state = {
-    email: '',
     loading: true,
     success: false,
     errors: {}
   }
 
   componentDidMount () {
-    api.user.confirmReset(this.props.match.params.token)
-      .then(user => {
-        this.setState({ loading: false, success: true, email: user.email })
-      })
+    this.props.validateToken(this.props.match.params.token)
+      .then(() => this.setState({ loading: false, success: true }))
       .catch(() => this.setState({ loading: false, success: false }))
   }
 
   submit = data => {
-    return api.user.resetPassword(data)
+    return this.props.resetPassword(data)
       .then(() => this.props.history.push('/login'))
   }
 
   render () {
-    const { loading, success, email } = this.state
+    const { loading, success } = this.state
+    const token = this.props.match.params.token
+
     return (
       <div>
         {
@@ -47,7 +51,7 @@ class ResetPasswordPage extends Component {
           )
         }
         {
-          success && <ResetForm submit={this.submit} email={email} />
+          !loading && success && <ResetForm submit={this.submit} token={token} />
         }
         {
           !loading && !success && (
@@ -65,4 +69,4 @@ class ResetPasswordPage extends Component {
   }
 }
 
-export default ResetPasswordPage
+export default connect(null, { validateToken, resetPassword })(ResetPasswordPage)

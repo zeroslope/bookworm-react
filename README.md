@@ -103,3 +103,7 @@ the problem is the combine of redux and router
 When you connect components to Redux and use them in your route, you will have blockers.
 
 One way to fix it: add `location` props;
+
+## reset password
+
+1. 忘记密码的时候会无法登陆，所以需要在未登录的时候才能进入忘记密码页面。

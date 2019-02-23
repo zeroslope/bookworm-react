@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { login } from '../../actions/auth'
 import LoginForm from '../forms/LoginForm'
@@ -23,6 +24,8 @@ class LoginPage extends Component {
         <h1>Login Page</h1>
 
         <LoginForm submit={this.submit} />
+
+        <Link to='/forget_password'>Forget Password?</Link>
       </div>
     )
   }

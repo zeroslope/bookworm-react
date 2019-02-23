@@ -36,3 +36,21 @@ export const confirm = (token) => {
       })
   }
 }
+
+export const resetPasswordRequest = ({ email }) => {
+  return () => {
+    return api.user.resetPasswordRequest(email)
+  }
+}
+
+export const validateToken = (token) => {
+  return () => {
+    return api.user.validateToken(token)
+  }
+}
+
+export const resetPassword = (data) => {
+  return () => {
+    return api.user.resetPassword(data)
+  }
+}

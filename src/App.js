@@ -8,17 +8,17 @@ import UserRoute from './components/routes/UserRoute'
 import GuestRoute from './components/routes/GuestRoute'
 import SignupPage from './components/pages/SignupPage'
 import ConfirmationPage from './components/pages/ConfirmationPage'
-import ForgetPWPage from './components/pages/ForgetPWPage'
+import ForgetPasswordPage from './components/pages/ForgetPasswordPage'
 import ResetPasswordPage from './components/pages/ResetPasswordPage'
 
 const App = ({ location }) => (
   <div className='ui container'>
     <Route location={location} path='/' exact component={HomePage} />
     <Route location={location} path='/confirmation/:token' exact component={ConfirmationPage} />
-    <Route location={location} path='/forget' exact component={ForgetPWPage} />
-    <Route location={location} path='/reset/:token' exact component={ResetPasswordPage} />
     <GuestRoute location={location} path='/login' exact component={LoginPage} />
     <GuestRoute location={location} path='/signup' exact component={SignupPage} />
+    <GuestRoute location={location} path='/forget_password' exact component={ForgetPasswordPage} />
+    <GuestRoute location={location} path='/reset_password/:token' exact component={ResetPasswordPage} />
     <UserRoute location={location} path='/dashboard' exact component={DashboardPage} />
   </div>
 )
