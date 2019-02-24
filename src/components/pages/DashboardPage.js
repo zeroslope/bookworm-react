@@ -2,20 +2,34 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import ConfirmEmailMessage from '../messages/ConfirmEmailMessage'
+import { allBooksSelector } from '../../reducers/books'
+import AddBookCtA from '../cta/AddBookCtA'
 
-const DashboardPage = ({ isConfirmed }) => {
+const DashboardPage = ({ isConfirmed, books }) => {
   return (
-    <div>{ !isConfirmed && <ConfirmEmailMessage /> }</div>
+    <div>
+
+      { !isConfirmed && <ConfirmEmailMessage /> }
+
+      { books.length === 0 && <AddBookCtA /> }
+    </div>
+
   )
 }
 
 DashboardPage.propTypes = {
-  isConfirmed: PropTypes.bool.isRequired
+  isConfirmed: PropTypes.bool.isRequired,
+  books: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired
+    }).isRequired
+  ).isRequired
 }
 
 function mapStateToProps (state) {
   return {
-    isConfirmed: !!state.user.confirmed
+    isConfirmed: !!state.user.confirmed,
+    books: allBooksSelector(state)
   }
 }
 
